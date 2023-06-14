@@ -1,5 +1,6 @@
 import discord
 import responses
+import json
 
 
 async def send_message(msg, user_msg, private):
@@ -9,6 +10,21 @@ async def send_message(msg, user_msg, private):
     except Exception as err:
         print(err)
 
-def run_bot():
+def get_secrets(secret: str) -> dict:
+    secrets: dict = {}
+    with open(secret, encoding="utf-8", mode="r") as data:
+        secrets = json.load(data)
+    return secrets
 
+def run_bot():
+    secret_file = "./secrets.json"
+    SECRETS: dict = get_secrets(secret_file)    
+    TOKEN, INV = SECRETS["TOKEN"], SECRETS["INV"]
+
+
+
+if __name__ == "__main__":
+    run_bot()
+
+    
 

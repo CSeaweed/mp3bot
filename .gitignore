@@ -2,6 +2,7 @@
 
 # Secrets 
 *.cfg
+*.json
 
 __pycache__/
 *.py[cod]
