@@ -1,12 +1,9 @@
+import downloader
+import discord
 
 
-def handle(msg: str) -> str:
-    msg: str = msg.lower()
-    
-    print(msg)
-
-    if msg == "sup":
-        return "sup my G"
-    
-
+async def handle(url) -> discord.File:
+    path = await downloader.download(url)
+    media = discord.File(path)
+    return media, path
 

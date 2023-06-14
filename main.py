@@ -1,7 +1,6 @@
+import bot
 
 
 if __name__ == "__main__":
-    # Start here 
-    pass
-    
+    bot.run_bot()
 
