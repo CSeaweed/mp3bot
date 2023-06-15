@@ -32,9 +32,9 @@ def run_bot():
             synced = await client.tree.sync()
             print(f"synced:\n{synced}")
         except Exception as err:
-            print(err):
+            print(err)
 
-    @client.tree.command(name="mp3")
+    @client.tree.command(name="mp3", description="Downloads Mp3 format from YouTube if media is publicly available and not too large")
     @app_commands.describe(url = "url here")
     async def mp3(interaction: discord.Interaction, url: str):
         # await interaction.response.send_message(f"Here you go {interaction.user.name} {url}")
