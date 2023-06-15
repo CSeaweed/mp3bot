@@ -24,7 +24,7 @@ def run_bot():
     intents = discord.Intents.default()
     intents.message_content = True
     client = commands.Bot(command_prefix='!', intents=intents)
-
+        
     @client.event
     async def on_ready():
         try:
@@ -32,7 +32,7 @@ def run_bot():
             synced = await client.tree.sync()
             print(f"synced:\n{synced}")
         except Exception as err:
-            print(err)
+            print(err):
 
     @client.tree.command(name="mp3")
     @app_commands.describe(url = "url here")
