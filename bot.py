@@ -5,12 +5,8 @@ import responses
 import json
 import pathlib
 import os
+from logger import write_to_history
 
-
-def log_command(username: str, url: str, channel):
-    dir = pathlib.WindowsPath("./logs/history.log")
-    with open(dir, mode="a", encoding="utf-8") as log:
-        log.write(f"{username} : {url} : {channel}\n")
 
 def get_secrets(secret: str) -> dict:
     secrets: dict = {}
@@ -39,16 +35,19 @@ def run_bot():
     @client.tree.command(name="mp3", description="Downloads Mp3 format from YouTube if media is publicly available and not too large")
     @app_commands.describe(url = "url here")
     async def mp3(interaction: discord.Interaction, url: str):
-        
+        success: bool = True # is true by default, false if any error occurs        
+
         # Execute command 
-        name: str = interaction.user.name
-        media, path = await responses.handle(url)
-        await interaction.channel.send(file=media)
-        os.remove(path)
-        await interaction.response.send_message(f"Here you go, {name.capitalize()}!")
-        
-        # Log command 
-        log_command(name, url, interaction.channel)
+        try:
+            name: str = interaction.user.name
+            media, path = await responses.handle(url)
+            await interaction.channel.send(file=media)
+            os.remove(path)
+            await interaction.response.send_message(f"Here you go, {name.capitalize()}!")
+        except:
+            success = False
+        # Log interaction 
+        write_to_history(success, name, url, interaction.channel)
 
     client.run(TOKEN)
 
