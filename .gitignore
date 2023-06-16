@@ -3,6 +3,7 @@
 # Secrets 
 *.cfg
 *.json
+*.log
 
 cache/
 
