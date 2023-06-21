@@ -8,6 +8,9 @@ import os
 from logger import write_to_history
 
 
+def build_mention(id: str) -> str:
+    return f"<@{id}>"
+
 def get_secrets(secret: str) -> dict:
     secrets: dict = {}
     with open(secret, encoding="utf-8", mode="r") as data:
@@ -40,14 +43,16 @@ def run_bot():
         # Execute command 
         try:
             name: str = interaction.user.name
+            uid: str = interaction.user.id
             media, path = await responses.handle(url)
             await interaction.channel.send(file=media)
             os.remove(path)
-            await interaction.response.send_message(f"Here you go, {name.capitalize()}!")
-        except:
+            await interaction.response.send_message(f"Here you go, {build_mention(uid)}!")
+        except Exception as err:
+            print(err)
             success = False
         # Log interaction 
-        write_to_history(success, name, url, interaction.channel)
+        write_to_history(success, f"{name} {uid}", url, interaction.channel)
 
     client.run(TOKEN)
 
