@@ -12,4 +12,8 @@ def write_to_history(success: bool, user: str, message: str, channel):
     with open(dest, mode="a+", encoding="utf-8") as history:
         history.write(f"{interaction}\n")
 
+    
+    
+
+
 
