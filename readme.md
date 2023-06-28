@@ -9,6 +9,9 @@
 
 ## Used packages
 * Pytube        For downloading the audio
-* Discord.py    For making the bot 
+* Discord.py    For making the bot
+
+## Issues
+* 28.6, Pytube package seems to be broken due to changes at YouTube's end, waiting for a fix for now
 
 
