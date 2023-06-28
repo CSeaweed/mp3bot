@@ -38,7 +38,7 @@ def run_bot():
     @client.tree.command(name="mp3", description="Downloads Mp3 format from YouTube if media is publicly available and not too large")
     @app_commands.describe(url = "url here")
     async def mp3(interaction: discord.Interaction, url: str):
-        success: bool = True # is true by default, false if any error occurs        
+        state: str = "Success" # is Success by default, err if any error occurs        
 
         # Execute command 
         try:
@@ -50,9 +50,26 @@ def run_bot():
             await interaction.response.send_message(f"Here you go, {build_mention(uid)}!")
         except Exception as err:
             print(err)
-            success = False
+            state = err
         # Log interaction 
-        write_to_history(success, f"{name} {uid}", url, interaction.channel)
+        write_to_history(state, f"{name} {uid}", url, interaction.channel)
+
+    @client.tree.command(name="help", description="General information")
+    async def help(interaction: discord.Interaction):
+            
+        # Execute command 
+        try:
+            message: str = f"""
+Help has arrived {build_mention(interaction.user.id)}!
+### Mp3 Download 
+* ' /mp3 URL '
+### Limits 
+* Media size must be <= Discord's upload limit! 
+            """
+            await interaction.response.send_message(message)            
+        except Exception as err:
+            print(err)
+
 
     client.run(TOKEN)
 
