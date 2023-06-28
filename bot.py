@@ -61,10 +61,10 @@ def run_bot():
         try:
             message: str = f"""
 Help has arrived {build_mention(interaction.user.id)}!
-### Mp3 Download 
-* ' /mp3 URL '
-### Limits 
-* Media size must be <= Discord's upload limit! 
+> ### Mp3 Download 
+> * ' /mp3 URL '
+> ### Limits 
+> * Media size must be <= Discord's upload limit! 
             """
             await interaction.response.send_message(message)            
         except Exception as err:
