@@ -54,8 +54,8 @@ def run_bot():
         # Log interaction 
         write_to_history(state, f"{name} {uid}", url, interaction.channel)
 
-    @client.tree.command(name="help", description="General information")
-    async def help(interaction: discord.Interaction):
+    @client.tree.command(name="help_me", description="General information")
+    async def help_me(interaction: discord.Interaction):
             
         # Execute command 
         try:
