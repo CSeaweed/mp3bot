@@ -12,6 +12,5 @@
 * Discord.py    For making the bot
 
 ## Issues
-* 28.6, Pytube package seems to be broken due to changes at YouTube's end, waiting for a fix for now
-
+* "get_throttling_function_name"; Wait for Pytube update or change line 272 in pytube/cipher.py to "r'a\.[a-zA-Z]\s*&&\s*\([a-z]\s*=\s*a\.get\("n"\)\)\s*&&\s*.*\|\|\s*(.*)\(',"
 
